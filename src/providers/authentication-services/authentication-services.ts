@@ -10,8 +10,8 @@ import "rxjs/add/operator/map";
 */
 @Injectable()
 export class AuthenticationServicesProvider {
-  apiUrl = "http://localhost:4993/Service.asmx/";
-  //apiUrl = "http://seva-services.sevasocial.org/service.asmx/";
+  //apiUrl = "http://localhost:4993/Service.asmx/";
+  apiUrl = "http://seva-services.sevasocial.org/service.asmx/";
 
   constructor(public http: Http) {
     console.log("Hello AuthenticationServicesProvider Provider");
