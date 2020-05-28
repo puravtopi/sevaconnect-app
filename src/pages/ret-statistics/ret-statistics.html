@@ -1,0 +1,62 @@
+<!--
+  Generated template for the RetStatisticsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      My Statistics
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header style="padding: 2px;">
+      <ion-item>
+        <ion-label>Select Year</ion-label>
+        <ion-select
+          [(ngModel)]="year"
+          class="myYearSelect"
+          placeholder="Year"
+          (ionChange)="monthlyStat()"
+          name="year"
+        >
+          <ion-option *ngFor="let item of yearlist" value="{{item}}"
+            >{{ item }}
+          </ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-card-header>
+  </ion-card>
+  <div class="clearfix"></div>
+  <ion-card>
+    <ion-card-header>
+      Transaction by Month
+    </ion-card-header>
+    <ion-card-content>
+      <canvas #barCanvas></canvas>
+    </ion-card-content>
+  </ion-card>
+  <br />
+  <ion-card>
+    <ion-card-header>
+      Transaction by Gender
+    </ion-card-header>
+
+    <ion-card-content>
+      <canvas #barCanvasGender></canvas>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-header>
+      Total Redeem
+      <p class="myYearSelect">{{ total }}</p>
+    </ion-card-header>
+  </ion-card>
+</ion-content>

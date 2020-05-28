@@ -1,0 +1,132 @@
+<!--
+  Generated template for the UpdateDetailsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>Update Details</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="login">
+  <div class="login-content">
+    <h5 ion-text color="secondary">Address Details</h5>
+
+    <ion-item no-padding>
+      <ion-label color="dark" stacked>Address:</ion-label>
+      <ion-input
+        type="text"
+        placeholder="Enter Address"
+        [(ngModel)]="users.address"
+        style="color: black;border-bottom: 1px solid #91B5AF;"
+      ></ion-input>
+    </ion-item>
+    <ion-item no-padding>
+      <ion-label color="dark" stacked>State:</ion-label>
+      <ion-select
+        [(ngModel)]="users.stateid"
+        (ionChange)="onStateChange($event)"
+        style="color: black;border-bottom: 1px solid #91B5AF;"
+      >
+        <ion-option
+          *ngFor="let state of states"
+          placeholder="Select State"
+          value="{{state.int_state_id}}"
+          style="color: black;border-bottom: 1px solid #91B5AF;"
+          >{{ state.str_state_name }}</ion-option
+        >
+      </ion-select>
+    </ion-item>
+    <ion-item no-padding>
+      <ion-label color="dark" stacked>City:</ion-label>
+      <ion-select [(ngModel)]="users.cityid">
+        <ion-option
+          *ngFor="let city of cities"
+          placeholder="Select City"
+          value="{{city.int_city_id}}"
+          style="color: black;border-bottom: 1px solid #91B5AF;"
+          >{{ city.str_city_name }}</ion-option
+        >
+      </ion-select>
+    </ion-item>
+    <ion-item no-padding>
+      <ion-label color="dark" stacked>Zip Code:</ion-label>
+      <ion-input
+        type="text"
+        placeholder="Enter Zip Code"
+        [(ngModel)]="users.zipcode"
+        style="color: black;border-bottom: 1px solid #91B5AF;"
+      ></ion-input>
+    </ion-item>
+
+    <h5 ion-text color="secondary">Organization Details</h5>
+
+    <ion-item no-padding>
+      <ion-label color="dark" stacked>State:</ion-label>
+      <ion-select
+        [(ngModel)]="users.orgstateid"
+        (ionChange)="onOrgStateChange($event)"
+      >
+        <ion-option
+          *ngFor="let state of states"
+          placeholder="Select State"
+          value="{{state.int_state_id}}"
+          style="color: black;border-bottom: 1px solid #91B5AF;"
+          >{{ state.str_state_name }}</ion-option
+        >
+      </ion-select>
+    </ion-item>
+    <ion-item no-padding>
+      <ion-label color="dark" stacked>City:</ion-label>
+      <ion-select [(ngModel)]="users.orgcityid">
+        <ion-option
+          *ngFor="let city of citiesorg"
+          placeholder="Select City"
+          (ioChange)="onChange()"
+          value="{{city.int_city_id}}"
+          style="color: black;border-bottom: 1px solid #91B5AF;"
+          >{{ city.str_city_name }}</ion-option
+        >
+      </ion-select>
+    </ion-item>
+    <ion-item no-padding>
+      <ion-label color="dark" stacked>Organization Type:</ion-label>
+      <ion-select [(ngModel)]="users.orgtypeid">
+        <ion-option
+          *ngFor="let type of orgType"
+          placeholder="Select City"
+          (ioChange)="onChange()"
+          value="{{type.int_organization_type_id}}"
+          style="color: black;border-bottom: 1px solid #91B5AF;"
+          >{{ type.str_organization_type }}</ion-option
+        >
+      </ion-select>
+    </ion-item>
+    <ion-item no-padding>
+      <ion-label color="dark" stacked>Organization:</ion-label>
+      <ion-select [(ngModel)]="users.orgid">
+        <ion-option
+          *ngFor="let org of orgs"
+          placeholder="Select City"
+          (ioChange)="onChange()"
+          value="{{org.int_organization_id}}"
+          style="color: black;border-bottom: 1px solid #91B5AF;"
+          >{{ org.str_organization_name }}</ion-option
+        >
+      </ion-select>
+    </ion-item>
+    <button
+      ion-button
+      icon-start
+      block
+      color="dark"
+      tappable
+      (click)="updateDetails()"
+    >
+      <ion-icon name="log-in"></ion-icon>
+      UPDATE
+    </button>
+  </div>
+</ion-content>

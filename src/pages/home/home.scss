@@ -1,0 +1,42 @@
+page-home,
+.home {
+  ion-list {
+    border-radius: 1rem;
+    overflow: hidden;
+
+    ion-item,
+    .item:first-child,
+    .item:last-child {
+      border: none;
+    }
+
+    ion-datetime {
+      padding-left: 0;
+    }
+
+    .pstyle{
+      font-size: 1.3rem;
+    }
+    
+  }
+  .iconstyle {
+        font-size: 9vh; //Preferred size here
+        color: #488AFF;
+        padding: 5px;
+    }
+
+    ul {
+      padding: 0px;
+    
+      &.rating li {
+        padding: 5px 10px !important;
+        background: none;
+        color: #ffb400;
+    
+        ion-icon {
+          font-size: 30px;
+        }
+      }
+    }
+    
+}

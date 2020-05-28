@@ -1,0 +1,74 @@
+<!-- # -->
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>
+      Offers on Map
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list [hidden]="autocompleteItems.length == 0">
+    <ion-item
+      *ngFor="let item of autocompleteItems"
+      tappable
+      (click)="selectSearchResult(item)"
+    >
+      {{ item.description }}
+    </ion-item>
+  </ion-list>
+  <agm-map
+    [latitude]="latitude"
+    [longitude]="longitude"
+    [scrollwheel]="false"
+    [zoom]="zoom"
+  >
+    <agm-marker
+      *ngFor="let l of location"
+      [latitude]="l.lat"
+      [longitude]="l.long"
+      title="Purav Topiwala"
+    >
+      <agm-snazzy-info-window [maxWidth]="400" [closeWhenOthersOpen]="true">
+        <ng-template>
+          <ion-list>
+            <ion-item>
+              <h3 class="desc">{{l.str_corporate_name}}</h3>
+              <p class="address">
+                {{l.str_street_address+','+l.str_city_name+','+l.str_state_name
+                }}
+              </p>
+            </ion-item>
+            <ion-item *ngFor="let o of l.offers">
+              <ion-thumbnail item-start>
+                <img
+                  src="http://sevasocial.org/Admin/upload_images/{{o.str_img}}"
+                />
+              </ion-thumbnail>
+              <h2
+                style="font-size: 1.4rem;color: black"
+                (click)="viewDetail(o.int_offer_id)"
+              >
+                {{o.str_offer_name}}
+              </h2>
+              <h3 class="address">
+                {{ o.str_category_name +'/'+ o.str_sub_category_name }}
+              </h3>
+              <rating
+                [(ngModel)]="o.rate"
+                readOnly="true"
+                max="5"
+                emptyStarIconName="star-outline"
+                halfStarIconName="star-half"
+                starIconName="star"
+                nullable="false"
+              >
+              </rating>
+              <!-- <button ion-button clear item-end>View</button> -->
+            </ion-item>
+          </ion-list>
+        </ng-template>
+      </agm-snazzy-info-window>
+    </agm-marker>
+  </agm-map>
+</ion-content>

@@ -1,0 +1,78 @@
+<!--
+  Generated template for the RetBioPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      Bio Details
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button tappable (click)="presentNotifications($event)">
+        <ion-icon name="notifications"></ion-icon>
+      </button>
+      <button ion-button tappable (click)="goToAccount()">
+        <ion-icon name="cog"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div [style.display]="is_edit?'none':'block'">
+    <ion-row class="border-bottom">
+      <ion-col style="padding-top:10px;padding-bottom: 10px ">
+        <h2 class="title">
+          Details
+        </h2>
+        <p style="color: rgb(110, 109, 108);">
+          {{ resultData!==undefined?resultData[0].str_company_bio:'' }}
+        </p>
+      </ion-col>
+    </ion-row>
+    <div>
+      <button
+        ion-button
+        icon-start
+        block
+        color="dark"
+        tappable
+        (click)="edit()"
+      >
+        Update
+      </button>
+    </div>
+  </div>
+
+  <div [style.display]="is_edit?'block':'none'">
+    <ion-row class="border-bottom">
+      <ion-col style="padding-top:10px;padding-bottom: 10px ">
+        <h2 class="title">
+          Details
+        </h2>
+        <ion-textarea type="text" rows="15" [(ngModel)]="bio_details">
+        </ion-textarea>
+      </ion-col>
+    </ion-row>
+    <div>
+      <button
+        ion-button
+        icon-start
+        block
+        color="dark"
+        tappable
+        (click)="saveBio()"
+      >
+        Save
+      </button>
+      <button ion-button icon-start block tappable (click)="cancel()">
+        Cancel
+      </button>
+    </div>
+  </div>
+</ion-content>

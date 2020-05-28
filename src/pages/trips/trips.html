@@ -1,0 +1,452 @@
+<!-- -->
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-row>
+      <ion-col>
+        <ion-searchbar
+          [(ngModel)]="searchText"
+          [showCancelButton]="shouldShowCancel"
+          placeholder="Seva’s Marketplace"
+          (ionCancel)="onCancel()"
+          (ionClear)="onCancel()"
+          (ionChange)="onChange()"
+          #searchbar
+        >
+        </ion-searchbar>
+      </ion-col>
+      <ion-col col-2>
+        <ion-icon
+          style=" background-color: #f99d22 !important;color: #fff;"
+          ion-item
+          ios="ios-pin"
+          md="md-pin"
+          (click)="showMap()"
+        ></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-navbar>
+
+  <!--  -->
+  <ion-toolbar style="background-color:#F99D22;padding: 0px!important; ">
+    <ion-scroll scrollX style="height:50px;background-color:#F99D22 ">
+      <div class="scroll-item">
+        <button ion-button outline (click)="changeSubCategory(10)">
+          <ion-icon ios="ios-people-outline" md="md-people"></ion-icon>
+          &nbsp; Activity
+        </button>
+      </div>
+      <div class="scroll-item">
+        <button ion-button outline (click)="changeSubCategory(9)">
+          <ion-icon ios="ios-car-outline" md="md-car"></ion-icon>
+          &nbsp; Automotive
+        </button>
+      </div>
+
+      <div class="scroll-item">
+        <button ion-button outline (click)="changeSubCategory(11)">
+          <ion-icon ios="ios-cut-outline" md="md-cut"></ion-icon>
+          &nbsp; Beauty and Spa
+        </button>
+      </div>
+      <div class="scroll-item">
+        <button ion-button outline (click)="changeSubCategory(12)">
+          <ion-icon ios="ios-pizza-outline" md="md-pizza"></ion-icon>
+          &nbsp; Food and Drink
+        </button>
+      </div>
+      <div class="scroll-item">
+        <button ion-button outline (click)="changeSubCategory(13)">
+          <ion-icon
+            ios="ios-phone-portrait-outline"
+            md="md-phone-portrait"
+          ></ion-icon>
+          &nbsp; Gadgets
+        </button>
+      </div>
+      <div class="scroll-item">
+        <button ion-button outline (click)="changeSubCategory(14)">
+          <ion-icon ios="ios-bicycle-outline" md="md-bicycle"></ion-icon>
+          &nbsp; Health and Wellness
+        </button>
+      </div>
+      <div class="scroll-item">
+        <button ion-button outline (click)="changeSubCategory(15)">
+          <ion-icon ios="ios-construct-outline" md="md-construct"></ion-icon>
+          &nbsp; Home Improvement
+        </button>
+      </div>
+      <div class="scroll-item">
+        <button ion-button outline (click)="changeSubCategory(16)">
+          <ion-icon ios="ios-clipboard-outline" md="md-clipboard"></ion-icon>
+          &nbsp;Services
+        </button>
+      </div>
+      <div class="scroll-item">
+        <button ion-button outline (click)="changeSubCategory(17)">
+          <ion-icon ios="ios-plane-outline" md="md-plane"></ion-icon>
+          &nbsp;Travel
+        </button>
+      </div>
+    </ion-scroll>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="trips detail-bg">
+  <!-- <div class="segsticky"> -->
+  <ion-segment
+    [(ngModel)]="offerOption"
+    color="primary"
+    style="height: 6.7rem;;"
+  >
+    <ion-segment-button value="0" (ionSelect)="segmentButtonClicked($event)">
+      <div>
+        <ion-icon name="pricetags" style="margin-top:.5vh ;"></ion-icon>
+
+        <label style="display: block;">All</label>
+      </div>
+    </ion-segment-button>
+    <ion-segment-button value="1" (ionSelect)="segmentButtonClicked($event)">
+      <div>
+        <ion-icon name="ribbon" style="margin-top:.8vh ;"></ion-icon>
+        <label style="display: block;">Seva's Best</label>
+      </div>
+    </ion-segment-button>
+    <ion-segment-button value="2" (ionSelect)="segmentButtonClicked($event)">
+      <div>
+        <ion-icon name="trending-up" style="margin-top:.8vh ;"></ion-icon>
+        <label style="display: block;"> Trending</label>
+      </div>
+    </ion-segment-button>
+  </ion-segment>
+
+  <ion-segment
+    [(ngModel)]="offerOption"
+    color="primary"
+    style="height: 6.7rem;;"
+  >
+    <ion-segment-button value="3" (ionSelect)="segmentButtonClicked($event)">
+      <div>
+        <ion-icon name="megaphone" style="margin-top:.8vh ;"></ion-icon>
+        <label style="display: block;"> Daily Deal</label>
+      </div>
+    </ion-segment-button>
+    <ion-segment-button value="4" (ionSelect)="segmentButtonClicked($event)">
+      <div>
+        <ion-icon name="heart" style="margin-top:.8vh ;"></ion-icon>
+        <label style="display: block;"> Feature Deal</label>
+      </div>
+    </ion-segment-button>
+    <ion-segment-button value="5" (ionSelect)="segmentButtonClicked($event)">
+      <div>
+        <ion-icon name="flash" style="margin-top:.8vh ;"></ion-icon>
+        <label style="display: block;"> Promotions</label>
+      </div>
+    </ion-segment-button>
+  </ion-segment>
+  <!-- </div> -->
+  <div *ngIf="offerOption=='0' || offerOption=='1' || offerOption=='2'">
+    <ion-card *ngFor="let offer of offers" margin-bottom>
+      <img
+        src="http://sevasocial.org/Admin/upload_images/{{ offer.str_img }}"
+        tappable
+        (click)="viewDetail(offer.int_offer_id)"
+      />
+      <!-- <ion-fab right top> -->
+      <!-- <button ion-fab right top>
+      <ion-icon name="pin"></ion-icon>
+    </button> -->
+      <!-- </ion-fab> -->
+
+      <ion-item>
+        <h2 tappable (click)="viewDetail(offer.int_offer_id)">
+          {{ offer.str_retailer_name }}
+        </h2>
+        <p
+          style="font-size: 2.2vh;"
+          tappable
+          (click)="viewDetail(offer.int_offer_id)"
+        >
+          {{ this.offer.str_street_address + " " + this.offer.str_city_name +
+          "," + this.offer.str_state_name + " " + this.offer.int_zip_code }}
+        </p>
+
+        <button
+          ion-button
+          icon-start
+          clear
+          item-end
+          (click)="viewofferonMap(offer.int_offer_id)"
+        >
+          <ion-icon name="pin"></ion-icon>
+        </button>
+        <!-- <button
+        ion-button
+        icon-start
+        clear
+        item-end
+        (click)="onsocialSharing(offer.int_offer_id)"
+      >
+        <ion-icon name="map"></ion-icon>
+      </button> -->
+      </ion-item>
+
+      <ion-item
+        tappable
+        (click)="viewDetail(offer.int_offer_id)"
+        style="display: none;"
+      >
+        <h2>{{ offer.str_offer_name }}</h2>
+        <p class="desc">
+          {{ offer.str_offer_details.length > 100 ?
+          offer.str_offer_details?.substring(1, 100) : offer.str_offer_details
+          }}
+        </p>
+        <div [innerHTML]="offer.str_offer_details | safeHtml"></div>
+      </ion-item>
+
+      <ion-row style="border-top:#F99D22 2px outset ;padding:3px ;">
+        <ion-col col-8 class="price">
+          <p
+            style="text-decoration: line-through;display: inline;font-weight: 600"
+          >
+            {{ offer.orgprice | currency: "USD":true }}
+          </p>
+          &nbsp;
+          <p style="display: inline;color: #91B5AF;font-weight: 600">
+            {{ offer.discountprice | currency: "USD":true }}
+          </p>
+        </ion-col>
+
+        <ion-col col-4 style="text-align: center">
+          <rating
+            [(ngModel)]="offer.rate"
+            readOnly="true"
+            max="5"
+            emptyStarIconName="star-outline"
+            halfStarIconName="star-half"
+            starIconName="star"
+            nullable="false"
+          >
+          </rating>
+        </ion-col>
+      </ion-row>
+
+      <!-- <ion-item>
+        <span item-start>18 min</span>
+        <span item-start>(2.6 mi)</span>
+        <button ion-button icon-start clear item-end>
+          <ion-icon name="navigate"></ion-icon>
+          Start
+        </button>
+      </ion-item> -->
+    </ion-card>
+  </div>
+
+  <div *ngIf="offerOption=='3'">
+    <ion-card *ngFor="let deal of deals" margin-bottom>
+      <img
+        src="http://sevasocial.org/Admin/upload_images/{{ deal.str_img }}"
+        tappable
+        (click)="viewDetail(deal.int_deal_id)"
+      />
+      <!-- <ion-fab right top> -->
+      <!-- <button ion-fab right top>
+      <ion-icon name="pin"></ion-icon>
+    </button> -->
+      <!-- </ion-fab> -->
+
+      <ion-item>
+        <h2 tappable (click)="viewDetail(deal.int_deal_id)">
+          {{ deal.str_retailer_name }}
+        </h2>
+        <p
+          style="font-size: 2.2vh;"
+          tappable
+          (click)="viewDetail(deal.int_deal_id)"
+        >
+          {{ this.deal.str_location + " " +this.deal.int_zip_code }}
+        </p>
+
+        <button
+          ion-button
+          icon-start
+          clear
+          item-end
+          (click)="viewofferonMap(deal.int_deal_id)"
+        >
+          <ion-icon name="pin"></ion-icon>
+        </button>
+        <!-- <button
+        ion-button
+        icon-start
+        clear
+        item-end
+        (click)="onsocialSharing(offer.int_offer_id)"
+      >
+        <ion-icon name="map"></ion-icon>
+      </button> -->
+      </ion-item>
+
+      <ion-item
+        tappable
+        (click)="viewDetail(deal.int_deal_id)"
+        style="display: none;"
+      >
+        <h2>{{ deal.str_deal_name }}</h2>
+        <p class="desc">
+          {{ deal.str_deal_details.length > 100 ?
+          deal.str_deal_details?.substring(1, 100) : deal.str_deal_details }}
+        </p>
+        <div [innerHTML]="deal.str_offer_details | safeHtml"></div>
+      </ion-item>
+
+      <ion-row style="border-top:#F99D22 2px outset ;padding:3px ;">
+        <ion-col col-8 class="price">
+          <p
+            style="text-decoration: line-through;display: inline;font-weight: 600"
+          >
+            {{ deal.orgprice | currency: "USD":true }}
+          </p>
+          &nbsp;
+          <p style="display: inline;color: #91B5AF;font-weight: 600">
+            {{ deal.discountprice | currency: "USD":true }}
+          </p>
+        </ion-col>
+
+        <ion-col col-4 style="text-align: center">
+          <rating
+            [(ngModel)]="deal.rate"
+            readOnly="true"
+            max="5"
+            emptyStarIconName="star-outline"
+            halfStarIconName="star-half"
+            starIconName="star"
+            nullable="false"
+          >
+          </rating>
+        </ion-col>
+      </ion-row>
+      <ion-row style="background-color:#F99D22 ;">
+        <ion-col col-12 style="text-align: center">
+          <p style="color: #fff;">
+            Redeem On : {{ deal.date_campaign_date | date:"MM/dd/yyyy"}}
+          </p>
+        </ion-col>
+      </ion-row>
+
+      <!-- <ion-item>
+        <span item-start>18 min</span>
+        <span item-start>(2.6 mi)</span>
+        <button ion-button icon-start clear item-end>
+          <ion-icon name="navigate"></ion-icon>
+          Start
+        </button>
+      </ion-item> -->
+    </ion-card>
+  </div>
+
+  <div *ngIf="offerOption=='4'">
+    <ion-card *ngFor="let deal of f_deals" margin-bottom>
+      <img
+        src="http://sevasocial.org/Admin/upload_images/{{ deal.str_img }}"
+        tappable
+        (click)="viewDetail(deal.int_deal_id)"
+      />
+      <!-- <ion-fab right top> -->
+      <!-- <button ion-fab right top>
+      <ion-icon name="pin"></ion-icon>
+    </button> -->
+      <!-- </ion-fab> -->
+
+      <ion-item>
+        <h2 tappable (click)="viewDetail(deal.int_deal_id)">
+          {{ deal.str_retailer_name }}
+        </h2>
+        <p
+          style="font-size: 2.2vh;"
+          tappable
+          (click)="viewDetail(deal.int_deal_id)"
+        >
+          {{ this.deal.str_location + " " +this.deal.int_zip_code }}
+        </p>
+
+        <button
+          ion-button
+          icon-start
+          clear
+          item-end
+          (click)="viewofferonMap(deal.int_deal_id)"
+        >
+          <ion-icon name="pin"></ion-icon>
+        </button>
+        <!-- <button
+        ion-button
+        icon-start
+        clear
+        item-end
+        (click)="onsocialSharing(offer.int_offer_id)"
+      >
+        <ion-icon name="map"></ion-icon>
+      </button> -->
+      </ion-item>
+
+      <ion-item
+        tappable
+        (click)="viewDetail(deal.int_deal_id)"
+        style="display: none;"
+      >
+        <h2>{{ deal.str_deal_name }}</h2>
+        <p class="desc">
+          {{ deal.str_deal_details.length > 100 ?
+          deal.str_deal_details?.substring(1, 100) : deal.str_deal_details }}
+        </p>
+        <div [innerHTML]="deal.str_offer_details | safeHtml"></div>
+      </ion-item>
+
+      <ion-row style="border-top:#F99D22 2px outset ;padding:3px ;">
+        <ion-col col-8 class="price">
+          <p
+            style="text-decoration: line-through;display: inline;font-weight: 600"
+          >
+            {{ deal.orgprice | currency: "USD":true }}
+          </p>
+          &nbsp;
+          <p style="display: inline;color: #91B5AF;font-weight: 600">
+            {{ deal.discountprice | currency: "USD":true }}
+          </p>
+        </ion-col>
+
+        <ion-col col-4 style="text-align: center">
+          <rating
+            [(ngModel)]="deal.rate"
+            readOnly="true"
+            max="5"
+            emptyStarIconName="star-outline"
+            halfStarIconName="star-half"
+            starIconName="star"
+            nullable="false"
+          >
+          </rating>
+        </ion-col>
+      </ion-row>
+      <ion-row style="background-color:#F99D22 ;">
+        <ion-col col-12 style="text-align: center">
+          <p style="color: #fff;">
+            Redeem On : {{ deal.date_campaign_date | date:"MM/dd/yyyy"}}
+          </p>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+  </div>
+
+  <ion-infinite-scroll
+    (ionInfinite)="loadMore($event)"
+    loadingSpinner="bubbles"
+    loadingText="Loading offers..."
+  >
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

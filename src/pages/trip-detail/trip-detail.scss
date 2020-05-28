@@ -1,0 +1,73 @@
+page-trip-detail,
+
+
+ion-label
+{
+  white-space: normal;
+}
+
+#trip-detail {
+
+  ul {
+    padding: 0px;
+    margin: 0px;
+   
+    &.rating li {
+      padding: 2px 0px 0px !important;
+      background: none;
+      color: #ffb400;
+   
+      ion-icon {
+        font-size: 15px;
+      }
+    }
+  }
+
+
+  .title
+  {
+    margin: 0px 0;
+    padding-left: 16px;
+    font-size: 1.9rem;
+    font-weight: 500;
+    color: #222;
+  }
+
+  .address{
+    margin: 0 0 2px;
+    font-size: 1.2rem;
+    font-weight: normal;
+    line-height: 1.5;
+    color: #666;
+    padding-left: 16px;
+    }
+
+    .swiper-slide img{
+      width: 100%
+
+    }
+
+  // booking form style
+  .booking-form {
+
+    ion-grid {
+
+      ion-row {
+
+        ion-col {
+          padding: 0;
+        }
+      }
+    }
+
+    .form-bottom {
+      display: flex;
+      align-items: center;
+
+      .pull-right {
+        margin-left: auto;
+      }
+    }
+
+  }
+}

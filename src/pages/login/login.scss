@@ -1,0 +1,35 @@
+page-login,
+.login {
+}
+
+.login .btncancel {
+  text-align: center;
+  background-color: orangered;
+}
+
+.selected .item-content {
+  // To add style to selected content label along with its background
+}
+.selected .radio-icon {
+  float: left;
+}
+
+.auth-page .scroll-content .login-content .list-form ion-item input {
+  color: #000000;
+}
+.passwordIconStyle {
+  font-size: 3rem !important;
+  position: relative !important;
+  top: 10px !important;
+  margin-bottom: 10px !important;
+  margin: 0 auto !important;
+  color: #91b5af;
+}
+
+.CustomSelect {
+  max-width: 100% !important;
+  height: 35px;
+  padding: 8px;
+  color: black;
+  border-bottom: 1px solid #91b5af;
+}

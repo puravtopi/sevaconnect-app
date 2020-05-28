@@ -1,0 +1,131 @@
+page-trips,
+.trips {
+  .card {
+    border-radius: 1rem;
+  }
+
+  ul {
+    padding: 0px;
+    margin: 0px;
+
+    &.rating li {
+      padding: 2px 0px 0px !important;
+      background: none;
+      color: #ffb400;
+
+      ion-icon {
+        font-size: 15px;
+      }
+    }
+  }
+
+  .desc {
+    margin: 0 0 2px;
+    font-size: 1.2rem;
+    font-weight: normal;
+    line-height: 1.5;
+    color: #222;
+  }
+
+  .title {
+    margin: 2px 0;
+    font-size: 1.7rem;
+    font-weight: 600;
+    color: #6e6d6c;
+  }
+
+  .offertitle {
+    margin: 2px 0;
+    font-size: 1.1rem;
+
+    color: #6e6d6c;
+  }
+  .price {
+    text-align: center;
+    font-weight: bold;
+  }
+
+  .iconstyle {
+    font-size: 6vh; //Preferred size here
+    color: #488aff;
+    padding: 15px;
+  }
+
+  .fab-button {
+    color: #fff;
+    border-color: #f99d22;
+    border-width: 1px;
+    border-style: solid;
+    background: transparent;
+  }
+
+  h2 {
+    font-weight: bold;
+  }
+
+  .location {
+    margin: 0 0 2px;
+    font-size: 1.1rem;
+    color: #666;
+  }
+
+  ion-scroll[scrollX] {
+    white-space: nowrap;
+    .scroll-item {
+      display: inline-block;
+      //margin-left: 10px;
+    }
+  }
+
+  .trip {
+    overflow: hidden;
+
+    .background {
+      background-size: 100% auto;
+      background-position: center;
+
+      .background-filter {
+        height: 16rem;
+        background: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0),
+          rgba(0, 0, 0, 0.65)
+        );
+
+        .align-bottom {
+          width: 100%;
+
+          h6 {
+            margin-top: 0;
+          }
+        }
+      }
+    }
+  }
+
+  .segment-md .segment-button {
+    height: 7rem;
+  }
+  .segment-ios .segment-button {
+    height: 6rem !important;
+  }
+
+  .segsticky {
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 0;
+  }
+
+  .toolbar-ios-primary .searchbar-ios .searchbar-input {
+    color: #000;
+    background: #fff;
+  }
+
+  .toolbar-ios-primary .searchbar-ios .searchbar-search-icon {
+    background-image: url("data:image/svg+xml;charset=utf-8,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2013%2013'><path%20fill='rgba(0,%200,%200,%200.5)'%20d='M5,1c2.2,0,4,1.8,4,4S7.2,9,5,9S1,7.2,1,5S2.8,1,5,1%20M5,0C2.2,0,0,2.2,0,5s2.2,5,5,5s5-2.2,5-5S7.8,0,5,0%20L5,0z'/><line%20stroke='rgba(0,%200,%200,%200.5)'%20stroke-miterlimit='10'%20x1='12.6'%20y1='12.6'%20x2='8.2'%20y2='8.2'/></svg>");
+  }
+
+  .toolbar-ios-primary .searchbar-ios .searchbar-clear-icon {
+    background-image: url("data:image/svg+xml;charset=utf-8,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20512%20512'><path%20fill='rgba(0,%200,%200,%200.5)'%20d='M403.1,108.9c-81.2-81.2-212.9-81.2-294.2,0s-81.2,212.9,0,294.2c81.2,81.2,212.9,81.2,294.2,0S484.3,190.1,403.1,108.9z%20M352,340.2L340.2,352l-84.4-84.2l-84,83.8L160,339.8l84-83.8l-84-83.8l11.8-11.8l84,83.8l84.4-84.2l11.8,11.8L267.6,256L352,340.2z'/></svg>");
+  }
+}

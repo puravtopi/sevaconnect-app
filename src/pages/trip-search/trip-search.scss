@@ -1,0 +1,95 @@
+page-trip-search {
+  ion-scroll[scrollX] {
+    white-space: nowrap;
+    .scroll-item {
+      display: inline-block;
+      //margin-left: 10px;
+    }
+  }
+}
+
+.desc {
+  margin: 0 0 2px;
+  font-size: 1.2rem;
+  font-weight: normal;
+  line-height: 1.5;
+  color: #222;
+}
+
+.title {
+  margin: 2px 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+.price {
+  text-align: center;
+  font-weight: bold;
+}
+
+ul {
+  padding: 0px;
+  margin: 0px;
+
+  &.rating li {
+    padding: 2px 0px 0px !important;
+    background: none;
+    color: #ffb400;
+
+    ion-icon {
+      font-size: 20px;
+    }
+  }
+}
+
+.myCustomSelect {
+  border-radius: 5px;
+  border: 1px solid #fff;
+  max-width: 100% !important;
+  height: 35px;
+  padding: 8px;
+  color: #fff;
+}
+
+.title {
+  margin: 2px 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #6e6d6c;
+}
+.container {
+  position: relative;
+  // max-width: 800px; /* Maximum width */
+  margin: 0 auto; /* Center it */
+}
+
+.container .content {
+  position: absolute; /* Position the background text */
+  bottom: 0; /* At the bottom. Use top:0 to append it to the top */
+  background: rgba(0, 0, 0, 0.5); /* Black background with 0.5 opacity */
+  color: #fff; /* Grey text */
+  width: 50%; /* Full width */
+  padding: 10px; /* Some padding */
+}
+.container .content h1 {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.select-ios .select-icon .select-icon-inner,
+.select-md .select-icon .select-icon-inner {
+  color: #fff !important;
+}
+
+.toolbar-ios-primary .searchbar-ios .searchbar-input {
+  color: #000;
+  background: #fff;
+}
+
+.toolbar-ios-primary .searchbar-ios .searchbar-search-icon {
+  background-image: url("data:image/svg+xml;charset=utf-8,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2013%2013'><path%20fill='rgba(0,%200,%200,%200.5)'%20d='M5,1c2.2,0,4,1.8,4,4S7.2,9,5,9S1,7.2,1,5S2.8,1,5,1%20M5,0C2.2,0,0,2.2,0,5s2.2,5,5,5s5-2.2,5-5S7.8,0,5,0%20L5,0z'/><line%20stroke='rgba(0,%200,%200,%200.5)'%20stroke-miterlimit='10'%20x1='12.6'%20y1='12.6'%20x2='8.2'%20y2='8.2'/></svg>");
+}
+
+.toolbar-ios-primary .searchbar-ios .searchbar-clear-icon {
+  background-image: url("data:image/svg+xml;charset=utf-8,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20512%20512'><path%20fill='rgba(0,%200,%200,%200.5)'%20d='M403.1,108.9c-81.2-81.2-212.9-81.2-294.2,0s-81.2,212.9,0,294.2c81.2,81.2,212.9,81.2,294.2,0S484.3,190.1,403.1,108.9z%20M352,340.2L340.2,352l-84.4-84.2l-84,83.8L160,339.8l84-83.8l-84-83.8l11.8-11.8l84,83.8l84.4-84.2l11.8,11.8L267.6,256L352,340.2z'/></svg>");
+}

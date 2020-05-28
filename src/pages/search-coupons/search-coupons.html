@@ -1,0 +1,57 @@
+<!--
+  Generated template for the SearchCouponsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Filter Coupons</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-item>
+    <ion-label color="primary" stacked>
+      <h2>Price</h2>
+    </ion-label>
+    <ion-range [(ngModel)]="filter.priceRange" debounce="700" (ionChange)="priceSearch()" color="primary" pin="true"></ion-range>
+  </ion-item>
+
+  <ion-item>
+    <ion-label color="primary" stacked>
+      <h2>Category</h2>
+    </ion-label>
+    <ion-select [(ngModel)]="filter.catid" (ionChange)="onCategoryChange($event)">
+    
+      <ion-option *ngFor="let cat of cats" placeholder="Select State" value={{cat.int_category_id}}>{{ cat.str_category_name }}</ion-option>
+    </ion-select>
+
+  </ion-item>
+
+  <ion-item>
+    <ion-label color="primary" stacked>
+      <h2>Sub Category</h2>
+    </ion-label>
+    <ion-select [(ngModel)]="filter.subcatid">
+    
+      <ion-option *ngFor="let subcat of subcats" placeholder="Select State" value={{subcat.int_sub_category_id}}>{{ subcat.str_sub_category_name }}</ion-option>
+    </ion-select>
+
+  </ion-item>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col col-6>
+        <button ion-button color="primary" (click)="searchCoupon()" >Filter</button>
+      </ion-col>
+      <ion-col col-6>
+        <button ion-button color="light" (click)="back()">Back</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

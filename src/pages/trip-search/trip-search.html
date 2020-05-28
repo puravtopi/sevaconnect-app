@@ -1,0 +1,176 @@
+<!--
+  Generated template for the TripSearchPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-row>
+      <ion-col>
+        <ion-searchbar
+          [(ngModel)]="searchText"
+          [showCancelButton]="shouldShowCancel"
+          (ionCancel)="onCancel($event)"
+          (ionClear)="onCancel($event)"
+          (ionChange)="onsearchChange()"
+          #searchbar
+        >
+        </ion-searchbar>
+      </ion-col>
+      <ion-col col-2>
+        <ion-icon
+          style=" background-color: #f99d22 !important;color: #fff;"
+          ion-item
+          ios="ios-pin"
+          md="md-pin"
+          (click)="showMap()"
+        ></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-navbar>
+  <!--  -->
+  <ion-toolbar style="background-color:#F99D22;padding: 0px; ">
+    <ion-scroll scrollX style="height:50px;background-color:#F99D22">
+      <ion-row>
+        <ion-col col-4>
+          <ion-select
+            class="myCustomSelect"
+            [(ngModel)]="search.subcatid"
+            (ionChange)="onChange()"
+          >
+            <ion-option value="0">Sub-Categories</ion-option>
+            <ion-option
+              *ngFor="let subcat of subcatData"
+              value="{{subcat.int_sub_category_id}}"
+              >{{ subcat.str_sub_category_name }} ({{ subcat.offercount }})
+            </ion-option>
+          </ion-select>
+        </ion-col>
+        <ion-col col-4>
+          <ion-select
+            class="myCustomSelect"
+            [(ngModel)]="search.distance"
+            (ionChange)="onChange()"
+          >
+            <ion-option value="0">Distance</ion-option>
+            <ion-option *ngFor="let d of distance" [value]="d"
+              >{{d}}</ion-option
+            >
+          </ion-select>
+        </ion-col>
+        <ion-col col-4>
+          <ion-select
+            class="myCustomSelect"
+            [(ngModel)]="search.price"
+            (ionChange)="onChange()"
+          >
+            <ion-option value="0">Price</ion-option>
+            <ion-option *ngFor="let p of price" [value]="p">{{p}}</ion-option>
+          </ion-select>
+        </ion-col>
+      </ion-row>
+      <!-- <div class="scroll-item">
+        <ion-select class="myCustomSelect" [(ngModel)]="search.sort" (ionChange)="onChange($event)">
+          <ion-option value="0">Sort</ion-option>
+          <ion-option *ngFor="let s of sort" [value]="s">{{s}}</ion-option>
+        </ion-select>
+      </div> -->
+    </ion-scroll>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="trips detail-bg">
+  <ion-card *ngFor="let offer of offers" margin-bottom>
+    <img
+      src="http://sevasocial.org/Admin/upload_images/{{ offer.str_img }}"
+      tappable
+      (click)="viewDetail(offer.int_offer_id)"
+    />
+    <!-- <ion-fab right top> -->
+    <!-- <button ion-fab right top>
+      <ion-icon name="pin"></ion-icon>
+    </button> -->
+    <!-- </ion-fab> -->
+
+    <ion-item>
+      <h2 tappable (click)="viewDetail(offer.int_offer_id)">
+        {{ offer.str_retailer_name }}
+      </h2>
+      <p
+        style="font-size: 2.2vh;"
+        tappable
+        (click)="viewDetail(offer.int_offer_id)"
+      >
+        {{ this.offer.str_street_address + " " + this.offer.str_city_name + ","
+        + this.offer.str_state_name + " " + this.offer.int_zip_code }}
+      </p>
+
+      <button
+        ion-button
+        icon-start
+        clear
+        item-end
+        (click)="viewofferonMap(offer.int_offer_id)"
+      >
+        <ion-icon name="pin"></ion-icon>
+      </button>
+    </ion-item>
+
+    <ion-item
+      tappable
+      (click)="viewDetail(offer.int_offer_id)"
+      style="display: none;"
+    >
+      <h2>{{ offer.str_offer_name }}</h2>
+      <p class="desc">
+        {{ offer.str_offer_details.length > 100 ?
+        offer.str_offer_details?.substring(1, 100) : offer.str_offer_details }}
+      </p>
+      <div [innerHTML]="offer.str_offer_details | safeHtml"></div>
+    </ion-item>
+
+    <ion-row style="border-top:#F99D22 2px outset ;padding:3px ;">
+      <ion-col col-8 class="price">
+        <p
+          style="text-decoration: line-through;display: inline;font-weight: 600"
+        >
+          {{ offer.orgprice | currency: "USD":true }}
+        </p>
+        &nbsp;
+        <p style="display: inline;color: #91B5AF;font-weight: 600">
+          {{ offer.discountprice | currency: "USD":true }}
+        </p>
+      </ion-col>
+
+      <ion-col col-4 style="text-align: center">
+        <rating
+          [(ngModel)]="offer.rate"
+          readOnly="true"
+          max="5"
+          emptyStarIconName="star-outline"
+          halfStarIconName="star-half"
+          starIconName="star"
+          nullable="false"
+        >
+        </rating>
+      </ion-col>
+    </ion-row>
+
+    <!-- <ion-item>
+        <span item-start>18 min</span>
+        <span item-start>(2.6 mi)</span>
+        <button ion-button icon-start clear item-end>
+          <ion-icon name="navigate"></ion-icon>
+          Start
+        </button>
+      </ion-item> -->
+  </ion-card>
+  <ion-infinite-scroll
+    (ionInfinite)="loadMore($event)"
+    loadingSpinner="bubbles"
+    loadingText="Loading offers..."
+  >
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

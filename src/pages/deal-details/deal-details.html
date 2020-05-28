@@ -1,0 +1,268 @@
+<!--
+  Generated template for the DealDetailsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>
+      <span ion-text>{{ deal != null ? deal.name : "" }}</span>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="common-bg" id="trip-detail">
+  <!--slides-->
+  <ion-slides class="to-top" pager>
+    <ion-slide>
+      <img
+        src="http://sevasocial.org/Admin/upload_images/{{
+          deal != null ? deal.img : ''
+        }}"
+        width=""
+        alt=""
+      />
+    </ion-slide>
+  </ion-slides>
+
+  <ion-row class="border-bottom">
+    <ion-col style="padding-top:10px;padding-bottom: 10px ">
+      <h2 class="title">
+        {{ deal.str_retailer_name }}
+      </h2>
+      <p class="address">{{ deal.location }}</p>
+    </ion-col>
+  </ion-row>
+
+  <!--services-->
+  <ion-grid class="border-bottom">
+    <ion-grid text-center style="padding: 0px">
+      <ion-row>
+        <ion-col col-4>
+          <ion-icon name="time"></ion-icon>
+          <br />
+          <span style="font-size: 12px;color:#666"
+            >{{ "Redeem on " + deal.date_campaign_date }}</span
+          >
+        </ion-col>
+        <ion-col col-4>
+          <ion-icon ios="logo-usd" md="logo-usd"></ion-icon>
+          <br />
+          <span style="font-size: 12px;color:#666"
+            >{{ deal.discount_amount == 0.0 ? "Flat Discount : " +
+            deal.perc_off_amt + "%" : "Offer Price : " + (deal.discount_amount |
+            currency: "USD":true) }}</span
+          >
+        </ion-col>
+        <ion-col col-4>
+          <rating
+            [(ngModel)]="deal.rate"
+            readOnly="true"
+            max="5"
+            emptyStarIconName="star-outline"
+            halfStarIconName="star-half"
+            starIconName="star"
+            nullable="false"
+          >
+          </rating>
+
+          <span style="font-size: 12px;color:#666"
+            >({{ deal != null ? deal.totalcomment : 0 }})</span
+          >
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-grid>
+
+  <!--description-->
+  <div class="border-bottom" padding>
+    <span ion-text color="primary" class="bold">Details</span>
+    <p
+      ion-text
+      style="color: #666;font-size:12px;margin-top: 5px;margin-bottom: 2px;"
+    >
+      {{ deal != null ? deal.will_get : "" }}
+    </p>
+  </div>
+
+  <!--description-->
+  <div class="border-bottom" padding>
+    <span ion-text color="primary" class="bold">The Fine Print</span>
+    <p
+      ion-text
+      style="color: #666;font-size:12px;margin-top: 5px;margin-bottom: 2px; "
+    >
+      {{ deal != null ? deal.desc : "" }}
+    </p>
+  </div>
+
+  <div class="booking-form card round" margin *ngIf="userType==1">
+    <div class="border-bottom" padding>
+      <!--choose guest-->
+      <ion-grid class="filters" no-padding margin-top>
+        <ion-row>
+          <ion-col class="adult" width-70>
+            <span ion-text color="primary">
+              <strong>{{ deal.price | currency: "USD":true }}</strong>
+            </span>
+          </ion-col>
+          <ion-col width-10 text-center>
+            <ion-icon
+              name="remove-circle"
+              class="text-2x"
+              tappable
+              (click)="minusRedeem()"
+              [hidden]="adults < 2"
+              color="secondary"
+            ></ion-icon>
+          </ion-col>
+          <ion-col width-10 text-center>{{ reDeem }}</ion-col>
+          <ion-col width-10 text-center>
+            <ion-icon
+              name="add-circle"
+              class="text-2x"
+              tappable
+              (click)="plusRedeem()"
+              color="secondary"
+            ></ion-icon>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+    <div padding class="form-bottom">
+      <!--       <span ion-text color="dark" class="bold">{{ adults }} Adults</span> -->
+      <!--booking button-->
+      <button
+        ion-button
+        class="pull-right"
+        color="primary"
+        tappable
+        (click)="verifyPin()"
+      >
+        Redeem Now {{ reDeem * this.deal.price | currency: "USD":true }}
+      </button>
+      <div class="clear"></div>
+    </div>
+  </div>
+
+  <!--address-->
+  <div class="border-bottom" padding>
+    <span ion-text color="primary" class="bold">BUSINESS OWNER</span>
+    <p style="color: #666;font-size:12px">{{ deal.retailer_name }}</p>
+  </div>
+
+  <div padding>
+    <span ion-text color="primary" class="bold">COMMENTS</span>
+  </div>
+
+  <ion-list>
+    <div class="booking-form card round" margin *ngFor="let c of comments">
+      <div>
+        <ion-item>
+          <h2
+            style="font-size: 1.2rem;color: #444;font-weight: 600;margin-top: 10px"
+          >
+            {{ c.str_first_name + " " + c.str_middle_name + " " +
+            c.str_last_name }}
+          </h2>
+          <ion-row>
+            <ion-col col-6>
+              <rating
+                [(ngModel)]="c.int_rate"
+                readOnly="true"
+                max="5"
+                emptyStarIconName="star-outline"
+                halfStarIconName="star-half"
+                starIconName="star"
+                nullable="false"
+              >
+              </rating>
+            </ion-col>
+            <ion-col col-6>
+              <p style="display: inline;font-size: 1.1rem;float:right;">
+                {{ c.date_create_date | date: "MM/dd/yyyy" }}
+              </p>
+            </ion-col>
+          </ion-row>
+
+          <span ion-text style="color: #666;font-size:12px"
+            >{{ c.str_review }}</span
+          >
+        </ion-item>
+      </div>
+    </div>
+  </ion-list>
+  <!-- <div padding *ngIf="!showComment">
+    <p>Sorry ! No Comments yet for this coupon.</p>
+  </div> -->
+
+  <div [hidden]="!isMyComments" *ngIf="userType==1">
+    <div padding>
+      <span ion-text color="primary" class="bold">MY COMMENTS</span>
+    </div>
+    <div padding>
+      <ion-list>
+        <div class="booking-form card round">
+          <ion-item>
+            <rating
+              [(ngModel)]="comment.rate"
+              readOnly="false"
+              max="5"
+              emptyStarIconName="star-outline"
+              halfStarIconName="star-half"
+              starIconName="star"
+              nullable="false"
+            >
+            </rating>
+          </ion-item>
+
+          <ion-item>
+            <ion-textarea
+              type="text"
+              class="txtarea"
+              placeholder="Enter Comments"
+              [(ngModel)]="comment.desc"
+            ></ion-textarea>
+          </ion-item>
+        </div>
+      </ion-list>
+
+      <div padding class="form-bottom">
+        <!--       <span ion-text color="dark" class="bold">{{ adults }} Adults</span> -->
+        <!--booking button-->
+        <button
+          ion-button
+          class="pull-right"
+          color="primary"
+          tappable
+          (click)="saveComments()"
+        >
+          Save Comment
+        </button>
+        <div class="clear"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <ion-grid>
+    <ion-row>
+
+      <ion-col>
+        <button ion-button icon-only (click)="whatsappShare()" color="primary" clear>
+          <ion-icon class="share-icon" name="logo-whatsapp"></ion-icon>
+        </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button icon-only (click)="facebookShare(i)" color="primary" clear>
+          <ion-icon class="share-icon" name="logo-facebook"></ion-icon>
+        </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button icon-only (click)="twitterShare(i)" color="primary" clear>
+          <ion-icon class="share-icon" name="logo-twitter"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid> -->
+</ion-content>

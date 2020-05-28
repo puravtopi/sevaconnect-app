@@ -1,0 +1,128 @@
+<!-- -->
+<ion-content padding class="animated fadeIn login auth-page">
+  <div class="login-content">
+    <!-- Logo -->
+    <div padding-horizontal text-center class="animated fadeInDown">
+      <div class="logo"></div>
+    </div>
+
+    <!-- Login form -->
+    <form class="list-form">
+      <ion-item>
+        <ion-label color="dark" stacked>
+          <ion-icon name="mail" class="text-primary"></ion-icon>
+          Email
+        </ion-label>
+        <ion-input
+          type="email"
+          name="uname"
+          [(ngModel)]="loginData.uname"
+          style="color: black;border-bottom: 1px solid #91B5AF;"
+          required
+        ></ion-input>
+      </ion-item>
+
+      <!-- <ion-item>
+        <ion-label color="dark" stacked>
+          <ion-icon name="lock" class="text-primary"></ion-icon>
+          Password
+        </ion-label>
+        <ion-input
+          type="password"
+          name="pass"
+          [(ngModel)]="loginData.pass"
+          style="color: black;border-bottom: 1px solid #91B5AF;"
+          required
+        ></ion-input>
+      </ion-item> -->
+      <br />
+      <ion-item>
+        <ion-label color="dark" stacked>
+          <ion-icon name="lock" class="text-primary"></ion-icon>
+          Password
+        </ion-label>
+        <ion-input
+          name="pass"
+          [(ngModel)]="loginData.pass"
+          [type]="passwordType"
+          clearOnEdit="false"
+          style="color: black;border-bottom: 1px solid #91B5AF;"
+        ></ion-input>
+        <ion-icon
+          item-end
+          [name]="passwordIcon"
+          class="text-primary passwordIconStyle"
+          (click)="hideShowPassword()"
+        ></ion-icon>
+      </ion-item>
+
+      <br />
+      <ion-item>
+        <ion-label color="dark" stacked>
+          <ion-icon name="lock" class="text-primary"></ion-icon>
+          Login Type
+        </ion-label>
+        <ion-select
+          name="loginData.lid"
+          class="CustomSelect"
+          [(ngModel)]="loginData.lid"
+        >
+          <ion-option value="1">Member</ion-option>
+          <ion-option value="2">Organization</ion-option>
+          <ion-option value="3">Bussiness Owner</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <!-- <ion-list
+        radio-group
+        name="loginData.lid"
+        class="selected"
+        [(ngModel)]="loginData.lid"
+      >
+        <ion-item>
+          <ion-label>Member</ion-label>
+          <ion-radio value="1" checked></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>Organization</ion-label>
+          <ion-radio value="2"></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>Bussiness Owner</ion-label>
+          <ion-radio value="3"></ion-radio>
+        </ion-item>
+      </ion-list> -->
+    </form>
+
+    <p text-right ion-text color="secondary" tappable (click)="forgotPass()">
+      <strong>Forgot Password?</strong>
+    </p>
+
+    <div>
+      <button
+        ion-button
+        icon-start
+        block
+        color="dark"
+        tappable
+        (click)="login()"
+      >
+        <ion-icon name="log-in"></ion-icon>
+        SIGN IN
+      </button>
+    </div>
+
+    <!-- Other links -->
+    <div text-center margin-top>
+      <span ion-text color="secondary" tappable (click)="register()"
+        >New here? <strong>Sign up</strong></span
+      >
+    </div>
+    <br />
+    <br />
+
+    <div text-center margin-top>
+      <span ion-text> Ver 1.0.0</span>
+    </div>
+  </div>
+</ion-content>
