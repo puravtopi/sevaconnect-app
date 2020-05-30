@@ -22,6 +22,10 @@
         ></ion-input>
       </ion-item>
 
+      <div *ngIf="unameReq" class="valstyle">
+        Email is required.
+      </div>
+
       <!-- <ion-item>
         <ion-label color="dark" stacked>
           <ion-icon name="lock" class="text-primary"></ion-icon>
@@ -55,7 +59,9 @@
           (click)="hideShowPassword()"
         ></ion-icon>
       </ion-item>
-
+      <div *ngIf="passReq" class="valstyle">
+        Password is required.
+      </div>
       <br />
       <ion-item>
         <ion-label color="dark" stacked>
@@ -67,7 +73,7 @@
           class="CustomSelect"
           [(ngModel)]="loginData.lid"
         >
-          <ion-option value="1">Member</ion-option>
+          <ion-option value="1">Consumer</ion-option>
           <ion-option value="2">Organization</ion-option>
           <ion-option value="3">Bussiness Owner</ion-option>
         </ion-select>

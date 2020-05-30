@@ -95,9 +95,19 @@ import { AgmSnazzyInfoWindowModule } from "@agm/snazzy-info-window";
     TooltipsModule,
     BrowserAnimationsModule,
     IonicModule.forRoot(MyApp, {
-      scrollPadding: false,
-      scrollAssist: true,
-      autoFocusAssist: false
+      platforms: {
+        ios: {
+          statusbarPadding: true,
+          scrollAssist: true,
+          autoFocusAssist: true,
+          scrollPadding: true
+        },
+        android: {
+          scrollPadding: false,
+          scrollAssist: true,
+          autoFocusAssist: false
+        }
+      }
     }),
     IonicStorageModule.forRoot({
       name: "__ionic3_start_theme",

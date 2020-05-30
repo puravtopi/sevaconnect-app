@@ -28,25 +28,22 @@
       <ion-select
         [(ngModel)]="users.stateid"
         (ionChange)="onStateChange($event)"
+        placeholder="Select State"
         style="color: black;border-bottom: 1px solid #91B5AF;"
       >
-        <ion-option
-          *ngFor="let state of states"
-          placeholder="Select State"
-          value="{{state.int_state_id}}"
-          style="color: black;border-bottom: 1px solid #91B5AF;"
+        <ion-option *ngFor="let state of states" value="{{state.int_state_id}}"
           >{{ state.str_state_name }}</ion-option
         >
       </ion-select>
     </ion-item>
     <ion-item no-padding>
       <ion-label color="dark" stacked>City:</ion-label>
-      <ion-select [(ngModel)]="users.cityid">
-        <ion-option
-          *ngFor="let city of cities"
-          placeholder="Select City"
-          value="{{city.int_city_id}}"
-          style="color: black;border-bottom: 1px solid #91B5AF;"
+      <ion-select
+        [(ngModel)]="users.cityid"
+        placeholder="Select City"
+        style="color: black;border-bottom: 1px solid #91B5AF;"
+      >
+        <ion-option *ngFor="let city of cities" value="{{city.int_city_id}}"
           >{{ city.str_city_name }}</ion-option
         >
       </ion-select>
@@ -68,10 +65,11 @@
       <ion-select
         [(ngModel)]="users.orgstateid"
         (ionChange)="onOrgStateChange($event)"
+        placeholder="Select State"
+        style="color: black;border-bottom: 1px solid #91B5AF;"
       >
         <ion-option
           *ngFor="let state of states"
-          placeholder="Select State"
           value="{{state.int_state_id}}"
           style="color: black;border-bottom: 1px solid #91B5AF;"
           >{{ state.str_state_name }}</ion-option
@@ -80,39 +78,45 @@
     </ion-item>
     <ion-item no-padding>
       <ion-label color="dark" stacked>City:</ion-label>
-      <ion-select [(ngModel)]="users.orgcityid">
+      <ion-select
+        [(ngModel)]="users.orgcityid"
+        placeholder="Select City"
+        style="color: black;border-bottom: 1px solid #91B5AF;"
+      >
         <ion-option
           *ngFor="let city of citiesorg"
-          placeholder="Select City"
           (ioChange)="onChange()"
           value="{{city.int_city_id}}"
-          style="color: black;border-bottom: 1px solid #91B5AF;"
           >{{ city.str_city_name }}</ion-option
         >
       </ion-select>
     </ion-item>
-    <ion-item no-padding>
+    <ion-item no-padding style="display: none;">
       <ion-label color="dark" stacked>Organization Type:</ion-label>
-      <ion-select [(ngModel)]="users.orgtypeid">
+      <ion-select
+        [(ngModel)]="users.orgtypeid"
+        placeholder="Select Organization Type"
+        style="color: black;border-bottom: 1px solid #91B5AF;"
+      >
         <ion-option
           *ngFor="let type of orgType"
-          placeholder="Select City"
           (ioChange)="onChange()"
           value="{{type.int_organization_type_id}}"
-          style="color: black;border-bottom: 1px solid #91B5AF;"
           >{{ type.str_organization_type }}</ion-option
         >
       </ion-select>
     </ion-item>
     <ion-item no-padding>
       <ion-label color="dark" stacked>Organization:</ion-label>
-      <ion-select [(ngModel)]="users.orgid">
+      <ion-select
+        [(ngModel)]="users.orgid"
+        placeholder="Select Organization"
+        style="color: black;border-bottom: 1px solid #91B5AF;"
+      >
         <ion-option
           *ngFor="let org of orgs"
-          placeholder="Select City"
           (ioChange)="onChange()"
           value="{{org.int_organization_id}}"
-          style="color: black;border-bottom: 1px solid #91B5AF;"
           >{{ org.str_organization_name }}</ion-option
         >
       </ion-select>

@@ -21,6 +21,10 @@
           required
         ></ion-input>
       </ion-item>
+      <div *ngIf="nameReq" class="valstyle">
+        Name is required.
+      </div>
+
       <ion-item>
         <ion-label stacked>
           <ion-icon name="mail" item-start class="text-primary"></ion-icon>
@@ -34,7 +38,9 @@
           required
         ></ion-input>
       </ion-item>
-
+      <div *ngIf="emailReq" class="valstyle">
+        Email is required.
+      </div>
       <ion-item>
         <ion-label stacked>
           <ion-icon name="lock" item-start class="text-primary"></ion-icon>
@@ -48,6 +54,9 @@
           required
         ></ion-input>
       </ion-item>
+      <div *ngIf="passReq" class="valstyle">
+        Password is required.
+      </div>
     </form>
     <br />
     <div>

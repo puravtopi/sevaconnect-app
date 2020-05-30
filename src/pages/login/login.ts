@@ -29,6 +29,9 @@ export class LoginPage {
   passwordIcon: string = "eye-off";
   public loginData: any = { uname: "", pass: "", lid: "1" };
   passwordCheckbox: boolean;
+  isInvalid: boolean = false;
+  unameReq: boolean = false;
+  passReq: boolean = false;
 
   constructor(
     public nav: NavController,
@@ -60,7 +63,7 @@ export class LoginPage {
           }
         },
         {
-          text: "Sign Up as Merchant",
+          text: "Sign Up as Business Owner",
           handler: () => {
             this.nav.setRoot(RegOrgBoPage, { typeid: 2 });
           }
@@ -87,56 +90,66 @@ export class LoginPage {
 
   // login and go to home page
   login() {
-    let loader = this.loadingCtrl.create({
-      content: "Please Wait..."
-    });
+    //check validation
+    this.checkValidation();
 
-    loader.present();
+    if (!this.isInvalid) {
+      let loader = this.loadingCtrl.create({
+        content: "Please Wait..."
+      });
 
-    console.log(JSON.stringify(this.loginData));
+      loader.present();
 
-    this.authServicesProvider
-      .loginServices(
-        this.loginData.uname,
-        this.loginData.pass,
-        this.loginData.lid
-      )
-      .then(result => {
-        this.responseData = result;
-        this.status = this.responseData.Status;
+      console.log(JSON.stringify(this.loginData));
 
-        if (this.status == "Success") {
+      this.authServicesProvider
+        .loginServices(
+          this.loginData.uname,
+          this.loginData.pass,
+          this.loginData.lid
+        )
+        .then(result => {
+          this.responseData = result;
+          this.status = this.responseData.Status;
+
           this.userData = this.responseData.LoginData;
           this.pinCode = this.responseData.PinCode;
 
-          sessionStorage.setItem("uType", this.loginData.lid);
-          sessionStorage.setItem("uData", JSON.stringify(this.userData[0]));
+          if (this.status == "Success") {
+            if (
+              this.userData[0].int_city_id == null ||
+              this.userData[0].int_city_id == ""
+            ) {
+              this.nav.push(UpdateDetailsPage, {
+                id: this.userData[0].int_user_id,
+                loginData: this.loginData
+              });
+            } else {
+              sessionStorage.setItem("uType", this.loginData.lid);
+              sessionStorage.setItem("uData", JSON.stringify(this.userData[0]));
 
-          sessionStorage.setItem("pinCode", this.pinCode);
+              sessionStorage.setItem("pinCode", this.pinCode);
 
-          this.storage.set("uType", this.loginData.lid);
-          this.storage.set("uData", JSON.stringify(this.userData[0]));
-          this.storage.set("pinCode", this.pinCode);
+              this.storage.set("uType", this.loginData.lid);
+              this.storage.set("uData", JSON.stringify(this.userData[0]));
+              this.storage.set("pinCode", this.pinCode);
 
-          if (
-            this.userData[0].int_city_id == null ||
-            this.userData[0].int_city_id == ""
-          )
-            this.nav.setRoot(UpdateDetailsPage);
-          else this.nav.setRoot(TripsPage);
-          //this.nav.setRoot(TestPage);
-        } else {
+              this.nav.setRoot(TripsPage);
+            }
+            //this.nav.setRoot(TestPage);
+          } else {
+            loader.dismiss();
+            this.commonServicesProvider.alertMessage(
+              "Seva Connect",
+              "Sorry ! Invalid Login."
+            );
+          }
           loader.dismiss();
-          this.commonServicesProvider.alertMessage(
-            "Seva Connect",
-            "Sorry ! Invalid Login."
-          );
-        }
-        loader.dismiss();
-      });
-    setTimeout(() => {
-      this.events.publish("user:login");
-    }, 500);
+        });
+      setTimeout(() => {
+        this.events.publish("user:login");
+      }, 500);
+    }
   }
 
   forgotPass() {
@@ -184,7 +197,8 @@ export class LoginPage {
                   toast.present();
                 } else {
                   let toast = this.toastCtrl.create({
-                    message: "Sorry!!We did not find this Email in our system.",
+                    message:
+                      "Sorry!! We did not find this Email in our system.",
                     duration: 3000,
                     position: "top",
                     cssClass: "dark-trans",
@@ -206,5 +220,21 @@ export class LoginPage {
   hideShowPassword() {
     this.passwordType = this.passwordType === "text" ? "password" : "text";
     this.passwordIcon = this.passwordIcon === "eye-off" ? "eye" : "eye-off";
+  }
+
+  checkValidation() {
+    this.isInvalid = false;
+    this.passReq = false;
+    this.unameReq = false;
+
+    if (this.loginData.uname == "" || this.loginData.uname === undefined) {
+      this.isInvalid = true;
+      this.unameReq = true;
+    }
+
+    if (this.loginData.pass == "" || this.loginData.pass === undefined) {
+      this.isInvalid = true;
+      this.passReq = true;
+    }
   }
 }
