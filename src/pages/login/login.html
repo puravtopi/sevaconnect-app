@@ -1,8 +1,8 @@
 <!-- -->
-<ion-content padding class="animated fadeIn login auth-page">
+<ion-content padding class="animated fadeIn login auth-page ">
   <div class="login-content">
     <!-- Logo -->
-    <div padding-horizontal text-center class="animated fadeInDown">
+    <div padding-horizontal text-center class="animated fadeInDown ">
       <div class="logo"></div>
     </div>
 
@@ -17,7 +17,7 @@
           type="email"
           name="uname"
           [(ngModel)]="loginData.uname"
-          style="color: black;border-bottom: 1px solid #91B5AF;"
+          style="color: black;border-bottom: 0.55px solid #c8c7cc;"
           required
         ></ion-input>
       </ion-item>
@@ -26,20 +26,6 @@
         Email is required.
       </div>
 
-      <!-- <ion-item>
-        <ion-label color="dark" stacked>
-          <ion-icon name="lock" class="text-primary"></ion-icon>
-          Password
-        </ion-label>
-        <ion-input
-          type="password"
-          name="pass"
-          [(ngModel)]="loginData.pass"
-          style="color: black;border-bottom: 1px solid #91B5AF;"
-          required
-        ></ion-input>
-      </ion-item> -->
-      <br />
       <ion-item>
         <ion-label color="dark" stacked>
           <ion-icon name="lock" class="text-primary"></ion-icon>
@@ -50,7 +36,7 @@
           [(ngModel)]="loginData.pass"
           [type]="passwordType"
           clearOnEdit="false"
-          style="color: black;border-bottom: 1px solid #91B5AF;"
+          style="color: black;border-bottom: 0.55px solid #c8c7cc"
         ></ion-input>
         <ion-icon
           item-end
@@ -62,7 +48,7 @@
       <div *ngIf="passReq" class="valstyle">
         Password is required.
       </div>
-      <br />
+
       <ion-item>
         <ion-label color="dark" stacked>
           <ion-icon name="lock" class="text-primary"></ion-icon>
@@ -78,26 +64,6 @@
           <ion-option value="3">Bussiness Owner</ion-option>
         </ion-select>
       </ion-item>
-
-      <!-- <ion-list
-        radio-group
-        name="loginData.lid"
-        class="selected"
-        [(ngModel)]="loginData.lid"
-      >
-        <ion-item>
-          <ion-label>Member</ion-label>
-          <ion-radio value="1" checked></ion-radio>
-        </ion-item>
-        <ion-item>
-          <ion-label>Organization</ion-label>
-          <ion-radio value="2"></ion-radio>
-        </ion-item>
-        <ion-item>
-          <ion-label>Bussiness Owner</ion-label>
-          <ion-radio value="3"></ion-radio>
-        </ion-item>
-      </ion-list> -->
     </form>
 
     <p text-right ion-text color="secondary" tappable (click)="forgotPass()">

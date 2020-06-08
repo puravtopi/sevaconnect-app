@@ -10,15 +10,14 @@
     <form class="list-form">
       <ion-item>
         <ion-label stacked>
-          <ion-icon name="person" item-start class="text-primary"></ion-icon>
+          <ion-icon name="person" class="text-primary"></ion-icon>
           Name
         </ion-label>
         <ion-input
           type="text"
           name="uname"
           [(ngModel)]="users.name"
-          style="color: black;border-bottom: 1px solid #91B5AF;"
-          required
+          style="color: black;border-bottom: 0.55px solid #c8c7cc"
         ></ion-input>
       </ion-item>
       <div *ngIf="nameReq" class="valstyle">
@@ -27,15 +26,14 @@
 
       <ion-item>
         <ion-label stacked>
-          <ion-icon name="mail" item-start class="text-primary"></ion-icon>
+          <ion-icon name="mail" class="text-primary"></ion-icon>
           Email
         </ion-label>
         <ion-input
           type="email"
           name="uname"
           [(ngModel)]="users.email"
-          style="color: black;border-bottom: 1px solid #91B5AF;"
-          required
+          style="color: black;border-bottom: 0.55px solid #c8c7cc"
         ></ion-input>
       </ion-item>
       <div *ngIf="emailReq" class="valstyle">
@@ -43,22 +41,21 @@
       </div>
       <ion-item>
         <ion-label stacked>
-          <ion-icon name="lock" item-start class="text-primary"></ion-icon>
+          <ion-icon name="lock" class="text-primary"></ion-icon>
           Password
         </ion-label>
         <ion-input
           type="password"
           name="pass"
           [(ngModel)]="users.pass"
-          style="color: black;border-bottom: 1px solid #91B5AF;"
-          required
+          style="color: black;border-bottom: 0.55px solid #c8c7cc"
         ></ion-input>
       </ion-item>
       <div *ngIf="passReq" class="valstyle">
         Password is required.
       </div>
     </form>
-    <br />
+
     <div>
       <button
         ion-button

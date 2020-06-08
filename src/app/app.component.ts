@@ -15,7 +15,6 @@ import { OrgProfilePage } from "../pages/org-profile/org-profile";
 import { RetOffersPage } from "../pages/ret-offers/ret-offers";
 import { RetStatisticsPage } from "../pages/ret-statistics/ret-statistics";
 import { MemStatisticsPage } from "../pages/mem-statistics/mem-statistics";
-import { UpdateDetailsPage } from "../pages/update-details/update-details";
 
 export interface MenuItem {
   title: string;
@@ -97,11 +96,6 @@ export class MyApp {
                 {
                   title: "Statistics",
                   component: MemStatisticsPage,
-                  icon: "podium"
-                },
-                {
-                  title: "Update Details",
-                  component: UpdateDetailsPage,
                   icon: "podium"
                 }
               ];

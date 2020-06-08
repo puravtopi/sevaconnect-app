@@ -17,11 +17,12 @@ page-login,
 .auth-page .scroll-content .login-content .list-form ion-item input {
   color: #000000;
 }
+
 .passwordIconStyle {
-  font-size: 3rem !important;
+  font-size: 4rem !important;
   position: relative !important;
   top: 10px !important;
-  margin-bottom: 10px !important;
+  // margin-bottom: 10px !important;
   margin: 0 auto !important;
   color: #91b5af;
 }
@@ -31,10 +32,15 @@ page-login,
   height: 35px;
   padding: 8px;
   color: black;
-  border-bottom: 1px solid #91b5af;
+  border-bottom: 0.55px solid #c8c7cc;
 }
 
 .valstyle {
   margin-top: 10px;
   color: red;
+}
+
+.item-ios.item-block .item-inner {
+  padding-right: 8px;
+  border-bottom: 0px;
 }
